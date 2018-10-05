@@ -1,6 +1,6 @@
 //specific Algolia search Client for currency conversion
 var customSearchClient = {
-   async  search (requests) {
+    search: async function(requests) {
      try {
        var algoliaClient = algoliasearch(algolia_params.app_id, algolia_params.api_key);
        if(algolia_params.currency_rate != 1) {

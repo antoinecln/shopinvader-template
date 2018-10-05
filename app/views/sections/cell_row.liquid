@@ -1,0 +1,112 @@
+---
+{
+  "name": "Text and Image",
+  "class": "",
+  "icon": "list",
+  "settings": [
+    {
+      "label": "Title",
+      "id": "title",
+      "type": "text"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Text",
+      "type": "cell_text",
+      "keep_icon": true,
+      "keep_name": true,
+      "settings": [
+        {
+          "label": "Cell Size",
+          "id": "cell_size",
+          "type": "radio",
+          "options": [
+            {"label": "Extra-small","value": "xs"},
+            {"label": "Small","value": "sm"},
+            {"label": "Medium", "value": "md"},
+            {"label": "Large", "value": "lg"},
+            {"label": "Extra-large", "value": "xl"}
+          ]
+        },
+        {
+          "label": "Content",
+          "id": "content",
+          "type": "text",
+          "html": true,
+          "nb_rows": 10
+        }
+      ]
+    },
+    {
+      "name": "Picture",
+      "type": "cell_image",
+      "keep_icon": true,
+      "keep_name": true,
+      "settings": [
+        {
+          "label": "Cell Size",
+          "id": "cell_size",
+          "type": "radio",
+          "options": [
+            {"label": "Extra-small","value": "xs"},
+            {"label": "Small","value": "sm"},
+            {"label": "Medium", "value": "md"},
+            {"label": "Large", "value": "lg"}
+          ]
+        },
+        {
+          "label": "Picture",
+          "id": "picture",
+          "type": "image_picker"
+        },
+        {
+          "label": "Picture Title",
+          "id": "picture_alt",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Text and Image",
+    "category": "Content",
+    "settings": {
+      "title": "Hello World",
+      "content": "This is an example."
+    }
+  }]
+}
+---
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="h2">
+        {{section.settings.title | strip}}
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for cell in section.blocks %}
+      {% case cell.settings.cell_size %}
+      {% when 'xs' %}
+        {% assign css_cell = "col-12 col-sm-6 col-lg-2 "%}
+      {% when 'sm' %}
+        {% assign css_cell = "col-12 col-sm-6 col-lg-4 "%}
+      {% when 'md' %}
+        {% assign css_cell = "col-12 col-sm-6 col-lg-6 "%}
+      {% when 'lg' %}
+        {% assign css_cell = "col-12 col-sm-6 col-lg-8 "%}
+      {% when 'xl' %}
+        {% assign css_cell = "col-12"%}
+      {% endcase %}
+      <div class="{{css_cell}} pt-4">
+        {% if cell.type == "cell_image" %}
+          <img src="{{cell.settings.picture}}" alt="{{cell.settings.picture_alt}}" class="img-fluid">
+        {% else %}
+          {{ cell.settings.content }}
+        {% endif %}
+      </div>
+    {%endfor%}
+  </div>
+</div>

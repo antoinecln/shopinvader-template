@@ -1,0 +1,101 @@
+---
+{
+  "name": "Texts",
+  "class": "",
+  "icon": "text",
+  "settings": [
+    {
+      "label": "Title",
+      "id": "title",
+      "type": "text",
+      "html": true,
+      "nb_rows": 3
+    },
+    {
+      "label": "Theme color",
+      "id": "theme_color",
+      "type": "radio",
+      "options": [
+        {"label": "Light","value": "light"},
+        {"label": "Dark","value": "dark"},
+        {"label": "Primary", "value": "primary"},
+        {"label": "Secondary", "value": "secondary"},
+        {"label": "Info", "value": "info"},
+        {"label": "Danger", "value": "danger"},
+        {"label": "Warning", "value": "warning"}
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Text",
+      "type": "cell_text",
+      "keep_icon": true,
+      "keep_name": true,
+      "settings": [
+        {
+          "label": "Content",
+          "id": "content",
+          "type": "text",
+          "html": true,
+          "nb_rows": 10
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Texts",
+    "category": "Content",
+    "settings": {
+      "title": "<h1>Hello World</h1>",
+      "theme_color": "primary"
+    }
+  }]
+}
+---
+{% case cell.blocks.size %}
+{% when 1 %}
+  {% assign css_cell = "col-12" %}
+{% when 2 %}
+  {% assign css_cell = "col-12 col-sm-6"%}
+{% when 3 %}
+  {% assign css_cell = "col-12 col-sm-6 col-lg-6 "%}
+{% else %}
+  {% assign css_cell = "col-12 col-sm-6 col-lg-4 "%}
+{% endcase %}
+
+{% case section.settings.theme_color %}
+{% when "light" %}
+  {% assign css_banner = "text-dark" %}
+{% when "dark" %}
+  {% assign css_banner = "text-light bg-dark"%}
+{% when "primary" %}
+  {% assign css_banner = "text-light bg-primary"%}
+{% when "warning" %}
+  {% assign css_banner = "text-dark bg-warning"%}
+{% when "danger" %}
+  {% assign css_banner = "text-light bg-danger"%}
+{% when "info" %}
+  {% assign css_banner = "text-light bg-info"%}
+{% endcase %}
+
+<div class="container-fluid">
+  <div class="row {{css_banner}}">
+    <div class="col-12">
+      <div class="container mt-4 mb-4">
+        <div class="row">
+          <div class="col-12 pb-4 pt-4">
+            {{section.settings.title}}
+          </div>
+        </div>
+        <div class="row">
+          {% for cell in section.blocks %}
+            <div class="{{css_cell}}">
+              {{ cell.settings.content }}
+            </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

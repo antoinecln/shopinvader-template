@@ -58,6 +58,13 @@ fields:
     localized: true
     text_formatting: html
 
+- rating:
+    label: Rating
+    type: string
+    required: false
+    hint: "Item rating"
+    localized: true
+
 - image_author:
     label: Image Author
     type: text

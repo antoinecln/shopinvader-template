@@ -10,9 +10,9 @@
     email: osiris@shopinvader.com
     password: password
     role: default
-- thibault.rey+123@akretion.com:
-    _slug: thibault-dot-rey+123-at-akkretion-dot-com
+- thibault.rey@akretion.com:
+    _slug: thibault-dot-rey-at-akkretion-dot-com
     name: thibault
-    email: thibault.rey+123@akretion.com
+    email: thibault.rey@akretion.com
     password: password
     role: default

@@ -1,0 +1,99 @@
+---
+{
+  "name": "Carousel",
+  "class": "",
+  "icon": "slide",
+  "settings": [
+    {
+      "label": "Identifier",
+      "id": "identifier",
+      "type": "text"
+    }, {
+      "label": "Display Controls",
+      "id": "display_control",
+      "type": "radio",
+      "options": [
+        {"label": "Display slides controls","value": "true"},
+        {"label": "Hide slides controls", "value": "false"}
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "list_item",
+      "settings": [
+        {
+          "label": "Slide title",
+          "id": "title",
+          "type": "text"
+        },
+        {
+          "label": "Slide Image",
+          "id": "picture",
+          "type": "image_picker",
+          "default": ""
+        },
+        {
+          "label": "link",
+          "id": "link",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Simple carousel",
+    "category": "Slider",
+    "settings": {
+      "display_controls": "true",
+      "identifier": "simple"
+    },
+    "blocks": [
+      {
+        "type": "list_item",
+        "settings": {
+          "title": "La mediterranée",
+          "picture": "samples/mediterranee.jpg",
+          "link": "https://fr.wikipedia.org/wiki"
+        }
+      },
+      {
+        "type": "list_item",
+        "settings": {
+          "title": "La mer Rouge",
+          "picture": "samples/rouge.jpg",
+          "link": "https://fr.wikipedia.org/wiki/Mer_Rouge"
+        }
+      }
+    ]
+  }]
+}
+---
+
+
+<div class=" text-center d-none d-sm-block" id="slider">
+
+  <div class="carousel slide" id="carousel-{{section.settings.identifier}}" data-ride="carousel">
+    <div class="carousel-inner">
+
+    {% for slide in section.blocks %}
+      <div class="{%if forloop.index0 == 0%}active{%endif%} carousel-item">
+        <a href="{{slide.link}}">
+          <img src="{{ slide.settings.picture }}" alt="{{slide.settings.title}}" class="w-100">
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+  {% if section.settings.display_control == "true"%}
+  <a class="carousel-control-prev" href="#carousel-{{section.settings.identifier}}" role="button" data-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+     <span class="sr-only">Previous</span>
+   </a>
+   <a class="carousel-control-next" href="#carousel-{{section.settings.identifier}}" role="button" data-slide="next">
+     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+     <span class="sr-only">Next</span>
+   </a>
+  {% endif %}
+  </div>
+</div>

@@ -1,0 +1,73 @@
+---
+{
+  "name": "Posts cards",
+  "class": "",
+  "icon": "list",
+  "settings": [
+    {
+      "label": "Header",
+      "id": "header",
+      "type": "text",
+      "html": true,
+      "nb_rows": 3
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Post",
+      "type": "post",
+      "settings": [
+        {
+          "label": "Post",
+          "id": "post",
+          "type": "content_type",
+          "content_entries": "posts"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Posts cards",
+    "category": "Content",
+    "settings": {
+      "header": "<h1>Latests posts</h1>"
+    },
+    "blocks": []
+  }]
+}
+---
+<div class="container-fluid">
+  <div class="row pt-4 pb-4 justify-content-center banner-cover">
+    <div class="col-12 pt-4 pb-4 ">
+      <div class="container pt-4 pb-4 ">
+        <div class="row">
+          <div class="col-12">
+            {{section.settings.header}}
+          </div>
+          <div class="col-12">
+            <div class="card-deck">
+              {% for item in section.blocks %}
+                {% if item.type == "card" %}
+                  <div class="card text-left {{theme_card}} border-0 shadow">
+                    <div class="card-body">
+                      <h3>{{item.settings.title}}</h3>
+                      {{item.settings.content}}
+                    </div>
+                  </div>
+                {% endif %}
+              {%endfor%}
+            </div>
+          </div>
+          {% for item in section.blocks %}
+            {% if item.type == "footer_text" %}
+              <div class="col-12 pb-3">
+                {{ item.settings.content }}
+              </div>
+            {% endif %}
+          {%endfor%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

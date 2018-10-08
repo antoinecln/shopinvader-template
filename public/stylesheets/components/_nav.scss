@@ -3,10 +3,74 @@
     padding-top: 56px;
   }
 }
-.navbar-header {
-  background: $header-bg;
+.navbar-header-section {
+  .navbar-theme-light {
+    background: $header-bg;
+    .header-controls-dropdown-content {
+      background-color: transparentize(theme-color('dark'), 0.1);
+      color: $white;
+    }
+  }
+  .navbar-theme-dark {
+    background-color: $gray-800;
+    color: $white;
+    .header-controls-dropdown {
+      .header-controls-dropdown-content {
+        background-color: transparentize(theme-color('dark'), 0.1);
+        color: $white;
+      }
+    }
+    a {
+      color: $white;
+    }
+  }
+  .navbar-theme-transparent {
+    background-color: transparentize(theme-color('dark'), 0.65);
+    color: $white;
+    .header-controls-dropdown {
+      .header-controls-dropdown-content {
+        background-color: transparentize(theme-color('dark'), 0.25);
+        color: $white;
+      }
+    }
+    a {
+      color: $white;
+    }
+  }
   box-shadow: 0px 4px 5px rgba(0,0,0,.26);
-  position: sticky;
+  .navbar-search {
+    .search-input {
+      background-color: transparent;
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
+      border-radius: 0;
+      padding-left: 0;
+
+    }
+    #header-search-hit {
+      background-color: transparent;
+      display: none;
+      width: 100%;
+    }
+    .algolia-autocomplete {
+      width: calc(100% - 41px);
+      .aa-input {
+        box-shadow: none;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.navbar-header {
+  &.navbar-transparent {
+    background-color: transparentize(theme-color('dark'), 0.4);
+    color: theme-color('light');
+  }
+  background: $header-bg;
+
+
   z-index: 1000;
   .currency-select {
     border-radius: 3px;
@@ -105,7 +169,21 @@
 
   .nav-header-controls-item {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    &.nav-header-controls-item-inline {
+      flex-direction: row;
+      .nav-header-controls-img img {
+        width: 1.5rem;
 
+      }
+      .cart-item-number {
+        top: 1rem;
+        font-size: 1rem;
+        text-align: left;
+        left: 0.5rem;
+      }
+    }
     .header-controls-dropdown {
       .header-controls-dropdown-content.visible {
         opacity: 1;
@@ -130,7 +208,6 @@
       }
 
       .header-controls-dropdown-content {
-        background: $white;
         border-top: 5px solid theme-color('primary');
         box-shadow: 0 9px 15px 0px rgba(35, 47, 62, 0.3);
         box-sizing: border-box;

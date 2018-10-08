@@ -61,7 +61,7 @@ is_layout: false
     </div>
     <div class="page shadow">
       <header>
-        {% include 'nav' %}
+        {% global_section 'header', placement: 'top', id: 'header' %}
       </header>
       <main>
         {% sections_dropzone %}

@@ -32,8 +32,6 @@ Clone this repository and move into your LocomotiveCMS folder.
 
 ```bash
 $ git clone https://github.com/akretion/shopinvader-template.git YOUR_SITE_NAME
-bundle exec wagon serve
-
 ```
 
 ### Launch with docker-compose
@@ -50,6 +48,9 @@ Now you are inside the container you can use wagon !
 ```bash
 wagon serve
 ```
+Website available here :
+
+http://0.0.0.0:3333
 
 ### Launch with docky
 

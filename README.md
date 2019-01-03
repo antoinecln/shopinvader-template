@@ -52,7 +52,7 @@ Website available here :
 
 http://0.0.0.0:3333
 
-### Launch with docky
+### Launch with docky (not tested)
 
 Run the container with bash
 
